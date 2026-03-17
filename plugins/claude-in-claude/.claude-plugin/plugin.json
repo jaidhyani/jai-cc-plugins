@@ -1,0 +1,10 @@
+{
+  "name": "claude-in-claude",
+  "version": "0.1.0",
+  "description": "Programmatic Claude Code CLI testing — structured JSON output parsing, multiturn session management via --resume, and isolation patterns for CI/containers",
+  "author": {
+    "name": "Jai"
+  },
+  "license": "MIT",
+  "keywords": ["testing", "automation", "cli", "multiturn", "session", "programmatic"]
+}
