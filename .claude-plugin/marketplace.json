@@ -33,6 +33,15 @@
       "author": {
         "name": "Jai"
       }
+    },
+    {
+      "name": "brainstorm",
+      "source": "./plugins/brainstorm",
+      "description": "Lightweight design-before-code discipline. Scales from one clarifying question to full collaborative design sessions.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jai"
+      }
     }
   ]
 }
