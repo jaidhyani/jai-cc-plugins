@@ -1,6 +1,6 @@
 {
   "name": "brainstorm",
-  "description": "Lightweight design-before-code discipline. Scales from one clarifying question to full collaborative design sessions.",
+  "description": "Think before coding. Scales with complexity: quick exchanges for simple tasks, deep sessions for hard problems.",
   "version": "0.1.0",
   "author": {
     "name": "Jai"

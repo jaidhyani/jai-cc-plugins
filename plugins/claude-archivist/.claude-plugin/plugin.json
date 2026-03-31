@@ -1,7 +1,7 @@
 {
   "name": "claude-archivist",
   "version": "1.1.1",
-  "description": "Automatically archive Claude Code session transcripts to prevent data loss",
+  "description": "Back up session transcripts to ~/.claude-archive/",
   "author": {
     "name": "Jai"
   },

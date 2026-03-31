@@ -1,7 +1,7 @@
 {
   "name": "pr-watch",
   "version": "0.1.0",
-  "description": "Efficient PR monitoring that blocks until changes are detected, saving LLM tokens",
+  "description": "Block until PRs change, then report what happened",
   "author": {
     "name": "Jai"
   },

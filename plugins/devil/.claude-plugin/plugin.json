@@ -1,6 +1,6 @@
 {
   "name": "devil",
-  "description": "Devil's advocate agent for aggressive critique, adversarial review, and finding flaws in designs, code, and plans.",
+  "description": "Find flaws in plans, designs, and code",
   "version": "1.0.0",
   "author": {
     "name": "Jai"
