@@ -1,4 +1,4 @@
-# Claude Marketplace
+# jai-cc-plugins
 
 Claude Code plugins by jaidhyani.
 
@@ -6,7 +6,7 @@ Claude Code plugins by jaidhyani.
 
 Add this marketplace:
 ```bash
-/plugin marketplace add jaidhyani/cc-plugin-marketplace
+/plugin marketplace add jaidhyani/jai-cc-plugins
 ```
 
 ## Available Plugins
@@ -17,7 +17,7 @@ Automatically archive Claude Code session transcripts to prevent data loss.
 
 **Install:**
 ```bash
-/plugin install claude-archivist@cc-plugin-marketplace
+/plugin install claude-archivist@jai-cc-plugins
 ```
 
 **Features:**
@@ -51,7 +51,7 @@ Track timestamps of user prompts and Claude responses for temporal context.
 
 **Install:**
 ```bash
-/plugin install timestamp-tracker@cc-plugin-marketplace
+/plugin install timestamp-tracker@jai-cc-plugins
 ```
 
 **Features:**
@@ -64,7 +64,7 @@ Generate images using Gemini 3 Pro (Nano Banana Pro).
 
 **Install:**
 ```bash
-/plugin install imagine@cc-plugin-marketplace
+/plugin install imagine@jai-cc-plugins
 ```
 
 **Features:**
@@ -80,9 +80,11 @@ Generate images using Gemini 3 Pro (Nano Banana Pro).
 
 Development discipline without ceremony. Brainstorming, debugging, TDD, verification, planning, code review, and agent coordination.
 
+Based on the official Anthropic [superpowers](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/superpowers) plugin.
+
 **Install:**
 ```bash
-/plugin install ultrapowers@cc-plugin-marketplace
+/plugin install ultrapowers@jai-cc-plugins
 ```
 
 **Skills:**
@@ -100,7 +102,7 @@ Devil's advocate agent for aggressive critique, adversarial review, and finding 
 
 **Install:**
 ```bash
-/plugin install devil@cc-plugin-marketplace
+/plugin install devil@jai-cc-plugins
 ```
 
 **Features:**
@@ -118,7 +120,7 @@ Efficient PR monitoring that blocks until changes are detected, saving LLM token
 
 **Install:**
 ```bash
-/plugin install pr-watch@cc-plugin-marketplace
+/plugin install pr-watch@jai-cc-plugins
 ```
 
 **Features:**
@@ -136,7 +138,7 @@ Lightweight design-before-code discipline. Scales from one clarifying question t
 
 **Install:**
 ```bash
-/plugin install brainstorm@cc-plugin-marketplace
+/plugin install brainstorm@jai-cc-plugins
 ```
 
 **Features:**
@@ -152,7 +154,7 @@ Programmatic Claude Code CLI testing - structured JSON output parsing, multiturn
 
 **Install:**
 ```bash
-/plugin install claude-in-claude@cc-plugin-marketplace
+/plugin install claude-in-claude@jai-cc-plugins
 ```
 
 **Features:**
