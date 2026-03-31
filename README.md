@@ -45,34 +45,122 @@ enabled: true
 ---
 ```
 
-### tracked-sessions
+### timestamp-tracker
 
-Track Claude Code session lifecycle for monitoring and resume workflows across git worktrees.
+Track timestamps of user prompts and Claude responses for temporal context.
 
 **Install:**
 ```bash
-/plugin install tracked-sessions@cc-plugin-marketplace
+/plugin install timestamp-tracker@cc-plugin-marketplace
 ```
 
 **Features:**
-- Tracks session start/end with metadata (session ID, PID, working directory, timestamps)
-- Session data stored at `~/.claude/tracked-sessions/<session-id>/meta.json`
-- Integrates with `wt` worktree slots (a-f)
+- Lightweight automatic timestamp tracking via hooks (UserPromptSubmit, Stop)
+- No commands needed - captures timing metadata in the background
 
-**CLI Tool (separate install):**
+### imagine
 
-The `cs` command-line tool for listing and managing sessions is available from [jaidhyani/claude-config](https://github.com/jaidhyani/claude-config):
+Generate images using Gemini 3 Pro (Nano Banana Pro).
 
+**Install:**
 ```bash
-# Copy to your ~/.claude/bin/
-curl -o ~/.claude/bin/cs https://raw.githubusercontent.com/jaidhyani/claude-config/main/bin/cs
-chmod +x ~/.claude/bin/cs
+/plugin install imagine@cc-plugin-marketplace
 ```
 
-**CLI Commands:**
-- `cs list` - Show all tracked sessions with git status
-- `cs start <slot> "<prompt>"` - Launch headless session in worktree
-- `cs attach <slot>` - Resume session interactively
-- `cs resume <slot> "<prompt>"` - Continue session headless
-- `cs stop <slot>` - Kill running session
-- `cs clean` - Remove stale session directories
+**Features:**
+- Aspect ratio options: 1:1, 16:9, 9:16, 4:3, 3:4
+- Size options: 1K, 2K, 4K
+- Optional reference image for guided generation
+- Defaults to 1:1 at 2K resolution
+
+**Commands:**
+- `/imagine` - Generate an image from a text prompt
+
+### ultrapowers
+
+Development discipline without ceremony. Brainstorming, debugging, TDD, verification, planning, code review, and agent coordination.
+
+**Install:**
+```bash
+/plugin install ultrapowers@cc-plugin-marketplace
+```
+
+**Skills:**
+- `/ultrapowers:brainstorm` - Design-before-code discipline, scales from quick clarification to deep collaborative design
+- `/ultrapowers:debugging` - Systematic root-cause investigation
+- `/ultrapowers:tdd` - Test-driven development workflow (red-green-refactor)
+- `/ultrapowers:verify` - Verification before completion claims
+- `/ultrapowers:plans` - Implementation plan writing and execution
+- `/ultrapowers:code-review` - Technical evaluation and feedback handling
+- `/ultrapowers:agents` - Parallel dispatch and sequential task orchestration
+
+### devil
+
+Devil's advocate agent for aggressive critique, adversarial review, and finding flaws in designs, code, and plans.
+
+**Install:**
+```bash
+/plugin install devil@cc-plugin-marketplace
+```
+
+**Features:**
+- Dedicated adversarial agent that actively investigates code, history, and builds concrete counterexamples
+- Focuses on impact over correctness - one fatal flaw over twenty style complaints
+- Multiple output formats: structured teardown, Socratic questioning, rapid-fire concerns, or single fatal flaw
+- No softening, no solutions - attack only
+
+**Skills:**
+- `/devil` - Dispatch the devil's advocate agent against the current plan, design, or code
+
+### pr-watch
+
+Efficient PR monitoring that blocks until changes are detected, saving LLM tokens.
+
+**Install:**
+```bash
+/plugin install pr-watch@cc-plugin-marketplace
+```
+
+**Features:**
+- Establishes baseline snapshot of open PRs and polls for state changes
+- Detects: new commits, merge status changes, PR merges, new PRs, comment/review activity
+- Zero LLM token consumption while waiting (shell-level blocking)
+- GitHub CLI integration with filtering by author and custom intervals
+
+**Commands:**
+- `/pr-watch` - Start monitoring PRs on the current repo
+
+### brainstorm
+
+Lightweight design-before-code discipline. Scales from one clarifying question to full collaborative design sessions.
+
+**Install:**
+```bash
+/plugin install brainstorm@cc-plugin-marketplace
+```
+
+**Features:**
+- Proportional design process: quick (1-2 exchanges), medium (3-6), or deep (7+)
+- Avoids ceremony for simple tasks, enables full collaborative design for complex ones
+
+**Skills:**
+- `/brainstorm` - Start a design session before writing code
+
+### claude-in-claude
+
+Programmatic Claude Code CLI testing - structured JSON output parsing, multiturn session management, and isolation patterns for CI/containers.
+
+**Install:**
+```bash
+/plugin install claude-in-claude@cc-plugin-marketplace
+```
+
+**Features:**
+- Non-interactive Claude Code CLI invocation for scripts and automation
+- Stream-JSON (JSONL) output format for structured parsing
+- Session management with `--resume` for multiturn conversations
+- Container-friendly with temp directory isolation
+- Python reference implementation with async subprocess wrapper
+
+**Skills:**
+- `/claude-in-claude` - Guide for programmatic Claude Code usage

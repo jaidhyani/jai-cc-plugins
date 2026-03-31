@@ -67,6 +67,10 @@ STATE_FILE="/tmp/myplugin-${SESSION_ID}.txt"
 
 Never use a single global file for state that should be per-session.
 
+## README
+
+**Always update README.md when adding, removing, or changing plugins.** The README is the public-facing plugin catalog — it must stay in sync with `marketplace.json`.
+
 ## Versioning
 
 **Always bump the version in `plugin.json` when a plugin changes.** Users won't get updates without a version bump.
