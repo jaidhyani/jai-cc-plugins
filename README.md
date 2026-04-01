@@ -11,8 +11,8 @@ Claude Code plugins.
 | Plugin | Type | Description |
 |--------|------|-------------|
 | [ultrapowers](#ultrapowers) | Skills | Brainstorming, debugging, TDD, verification, planning, code review, agents |
-| [devil](#devil) | Agent | Find flaws in plans, designs, and code |
-| [brainstorm](#brainstorm) | Skill | Think before coding |
+| [devil](#devil) | Agent | Poke holes in plans, designs, and code |
+| [brainstorm](#brainstorm) | Skill | Ask questions before writing code |
 | [imagine](#imagine) | Command | Generate images with Gemini 3 Pro |
 | [pr-watch](#pr-watch) | Command | Block until PRs change |
 | [claude-archivist](#claude-archivist) | Hooks | Back up session transcripts |
@@ -23,7 +23,7 @@ Claude Code plugins.
 
 ### ultrapowers
 
-Opinionated dev workflow skills. Fork of the official [superpowers](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/superpowers) plugin.
+Dev workflow skills. Fork of the official [superpowers](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/superpowers) plugin.
 
 ```bash
 /plugin install ultrapowers@jai-cc-plugins
@@ -32,7 +32,7 @@ Opinionated dev workflow skills. Fork of the official [superpowers](https://gith
 | Skill | |
 |-------|-|
 | `/ultrapowers:brainstorm` | Design before code |
-| `/ultrapowers:debugging` | Root-cause investigation |
+| `/ultrapowers:debugging` | Root cause investigation |
 | `/ultrapowers:tdd` | Red-green-refactor |
 | `/ultrapowers:verify` | Check work before claiming done |
 | `/ultrapowers:plans` | Write and execute implementation plans |
@@ -41,7 +41,7 @@ Opinionated dev workflow skills. Fork of the official [superpowers](https://gith
 
 ### devil
 
-Tears apart plans, designs, and code. Reads the actual codebase and builds counterexamples.
+Reads the codebase, builds counterexamples, tells you what's wrong.
 
 ```bash
 /plugin install devil@jai-cc-plugins
@@ -49,11 +49,11 @@ Tears apart plans, designs, and code. Reads the actual codebase and builds count
 
 **Skill:** `/devil`
 
-Output formats: structured teardown, Socratic questioning, rapid-fire concerns, or single fatal flaw.
+Output formats: structured teardown, Socratic questioning, rapid fire concerns, or single fatal flaw.
 
 ### brainstorm
 
-Ask questions before writing code. Scales up with complexity: 1-2 exchanges for simple stuff, 7+ for hard problems.
+Ask questions before writing code. Short exchange for simple tasks, longer for hard ones.
 
 ```bash
 /plugin install brainstorm@jai-cc-plugins
@@ -75,7 +75,7 @@ Aspect ratios: 1:1, 16:9, 9:16, 4:3, 3:4. Sizes: 1K, 2K, 4K. Optional reference 
 
 ### pr-watch
 
-Polls GitHub for PR changes and blocks until something happens. No tokens burned while waiting.
+Polls GitHub for PR changes and blocks until something happens. Uses shell-level blocking so no tokens are spent waiting.
 
 ```bash
 /plugin install pr-watch@jai-cc-plugins
@@ -87,7 +87,7 @@ Detects new commits, status changes, merges, new PRs, comments, and reviews. Fil
 
 ### claude-archivist
 
-Backs up session transcripts to `~/.claude-archive/`. Runs on SessionEnd, PreCompact, and periodically. Incremental, gzip-compressed.
+Backs up session transcripts to `~/.claude-archive/`. Runs on SessionEnd, PreCompact, and periodically. Incremental, gzip compressed.
 
 ```bash
 /plugin install claude-archivist@jai-cc-plugins
