@@ -1,59 +1,22 @@
 ---
 name: pr-watch
-description: "This skill should be used when the user asks to \"watch PRs\", \"monitor PRs\", \"track PR changes\", \"watch for reviews\", \"babysit this PR\", \"keep an eye on CI\", \"monitor open pull requests\", or wants autonomous PR monitoring that detects and responds to CI failures, review comments, and merge conflicts."
+description: "This skill should be used when the user asks to \"watch this PR\", \"monitor the PR\", \"keep an eye on CI\", \"watch for reviews\", \"babysit this PR\", or wants autonomous PR monitoring that detects and responds to CI failures, review comments, and merge conflicts on the current branch's PR."
 ---
 
 # PR Watch
 
-Monitor open GitHub PRs by blocking until a state change is detected, then respond autonomously to CI failures, review comments, and merge conflicts. Consumes zero LLM tokens while waiting.
+Monitor the current branch's PR autonomously — detect and respond to CI failures, review comments, and merge conflicts. Consumes zero LLM tokens while waiting.
 
-## Two Modes
+## Assumptions
 
-1. **Watch all** (default): monitor all open PRs for the current user, report changes
-2. **Watch + respond** (`--respond`): monitor a single PR and autonomously fix CI failures, address review comments, and resolve merge conflicts
+- The current branch has an open PR. If not, stop with: "No open PR on this branch."
+- The working directory is the repo being monitored.
 
-## Core Script
+## Commit Discipline
 
-`${CLAUDE_PLUGIN_ROOT}/scripts/pr-watch.sh` accepts:
-- `--author AUTHOR` — GitHub author filter (default `@me`)
-- `--interval SECONDS` — polling interval (default `60`)
+Commit and push after every logical fix. Never batch unrelated fixes. Formatting/lint fixes from dev_checks get their own commit.
 
-## Watch All PRs (Detection Only)
-
-### 1. Get Baseline
-
-```bash
-gh pr list --author "@me" --state open \
-  --json number,title,mergeable,commits,updatedAt \
-  --jq '[.[] | {number, title, mergeable, commits: (.commits | length), updatedAt}] | sort_by(.number)'
-```
-
-Report baseline state to user.
-
-### 2. Start Blocking Watcher
-
-```bash
-bash ${CLAUDE_PLUGIN_ROOT}/scripts/pr-watch.sh
-```
-
-Blocks until a change is detected.
-
-### 3. Interpret Changes
-
-Compare BEFORE/AFTER JSON:
-- **New commits**: commit count increased
-- **Merge status changes**: MERGEABLE to CONFLICTING or vice versa
-- **PRs disappeared**: verify with `gh pr view NUMBER --json state,mergedAt`
-- **New PRs**: numbers in AFTER not in BEFORE
-- **updatedAt-only**: check `gh pr view NUMBER --json comments --jq '.comments[-1]'`
-
-### 4. Re-launch
-
-After reporting, restart the watcher to continue monitoring.
-
-## Watch + Respond (Single PR)
-
-For autonomous monitoring of a single PR with active response to issues. Identify the target PR from user input (number, URL, or current branch).
+## Workflow
 
 ### 1. Capture Baseline
 
@@ -63,6 +26,8 @@ REPO=$(gh repo view --json nameWithOwner --jq .nameWithOwner)
 PREV_COMMENTS=$(gh pr view $PR --json comments --jq '.comments | length')
 PREV_REVIEWS=$(gh pr view $PR --json reviews --jq '.reviews | length')
 ```
+
+Confirm the PR is open. If merged or closed, report status and stop.
 
 Report: "Watching PR #N — polling every 90s for CI, reviews, comments, and conflicts."
 
@@ -177,7 +142,7 @@ Continue monitoring — never merge autonomously.
 
 #### INFO:TIMEOUT
 
-Report timeout (~2 hours). Suggest re-running to restart.
+Report timeout (~2 hours). Suggest re-running `/pr-watch` to restart.
 
 ### 4. Addressing Feedback
 
@@ -192,14 +157,9 @@ After all items:
 2. Run dev_checks if available: `"$(git rev-parse --show-toplevel)/scripts/dev_checks.sh"`
 3. Formatting fixes from dev_checks get their own commit
 
-### 5. Commit Discipline
-
-Commit and push after every logical fix. Never batch unrelated fixes. Formatting/lint fixes from dev_checks get their own commit.
-
 ## Team Context
 
 When operating as a teammate, use `SendMessage` to notify the lead of changes:
-- "PR #194: new commit pushed (11 -> 12)"
-- "PR #187: MERGED at 00:36 UTC"
-- "PR #184: now CONFLICTING (was MERGEABLE)"
-- "PR #152: CI failed — fixing flaky test in auth_test.go"
+- "PR #194: CI failed — fixing flaky test in auth_test.go"
+- "PR #184: now CONFLICTING — resolving merge conflict"
+- "PR #187: approved, all checks green — ready to merge"

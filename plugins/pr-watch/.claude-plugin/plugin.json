@@ -1,7 +1,7 @@
 {
   "name": "pr-watch",
-  "version": "0.2.0",
-  "description": "Monitor PRs and respond to CI failures, reviews, and conflicts",
+  "version": "1.0.0",
+  "description": "Watch the current branch's PR and respond to CI failures, reviews, and conflicts",
   "author": {
     "name": "Jai"
   },

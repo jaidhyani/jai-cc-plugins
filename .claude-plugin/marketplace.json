@@ -55,8 +55,8 @@
     {
       "name": "pr-watch",
       "source": "./plugins/pr-watch",
-      "description": "Monitor PRs and respond to CI failures, reviews, and conflicts",
-      "version": "0.2.0",
+      "description": "Watch the current branch's PR and respond to CI failures, reviews, and conflicts",
+      "version": "1.0.0",
       "author": {
         "name": "Jai"
       }
