@@ -1,14 +1,16 @@
 ---
 name: pr-watch
-description: Start monitoring open PRs for changes (commits, merges, conflicts)
+description: Monitor PRs for changes and respond to CI failures, reviews, and conflicts
 ---
 
-Start monitoring open GitHub PRs for the current user. Establish a baseline of all open PRs, report their current state, then enter a watch loop that blocks until changes are detected.
+Monitor open GitHub PRs. Two modes:
+
+**Watch all** (no args): detect changes across all your open PRs, report what happened.
+**Watch + respond** (with PR): autonomously monitor a single PR and respond to CI failures, review comments, and merge conflicts.
 
 Use the pr-watch skill for detailed workflow guidance.
 
-1. Get the current baseline with `gh pr list --author "@me" --state open --json number,title,mergeable,commits,updatedAt`
-2. Report the baseline state
-3. Run `bash ${CLAUDE_PLUGIN_ROOT}/scripts/pr-watch.sh` to block until a change occurs
-4. When a change is detected, interpret the before/after diff and report what changed
-5. Re-launch the watcher to continue monitoring
+Examples:
+- `/pr-watch` — watch all open PRs for changes
+- `/pr-watch 123` — watch PR #123 and respond to issues
+- `/pr-watch https://github.com/org/repo/pull/123` — same, with URL
