@@ -29,7 +29,7 @@ PREV_REVIEWS=$(gh pr view $PR --json reviews --jq '.reviews | length')
 
 Confirm the PR is open. If merged or closed, report status and stop.
 
-Report: "Watching PR #N — polling every 90s for CI, reviews, comments, and conflicts."
+Report: "Watching PR #N — polling every 60s for CI, reviews, comments, and conflicts."
 
 ### 2. Launch Background Monitor
 
@@ -39,10 +39,10 @@ Start a background poll loop (`run_in_background: true` Bash command):
 PR=<number>
 PREV_COMMENTS=<baseline>
 PREV_REVIEWS=<baseline>
-ITER=0; MAX_ITER=80
+ITER=0; MAX_ITER=120
 
 while [ "$ITER" -lt "$MAX_ITER" ]; do
-    sleep 90
+    sleep 60
     ITER=$((ITER + 1))
 
     CI=$(gh pr checks $PR --json state --jq '.[].state' 2>/dev/null | sort -u)
@@ -143,6 +143,10 @@ Continue monitoring — never merge autonomously.
 #### INFO:TIMEOUT
 
 Report timeout (~2 hours). Suggest re-running `/pr-watch` to restart.
+
+## Future: Webhook Mode
+
+Polling is a stopgap. The long-term plan is ephemeral Cloudflare Worker webhooks — spin up a temporary endpoint, register it with GitHub, relay events to the local session, tear it down when the PR closes. When that infra exists, replace the poll loop with it.
 
 ### 4. Addressing Feedback
 
