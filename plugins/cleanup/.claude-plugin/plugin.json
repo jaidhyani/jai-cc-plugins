@@ -1,0 +1,10 @@
+{
+  "name": "cleanup",
+  "description": "Scope-sensitive code quality sweep: scan, fix safe issues, verify, report. Defaults to PR/branch scope.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jai"
+  },
+  "license": "MIT",
+  "keywords": ["cleanup", "refactor", "code-quality", "dead-code"]
+}
