@@ -11,6 +11,10 @@ Two steps required:
 
 Without step 2, the plugin won't appear when users browse the marketplace.
 
+## Marketplace Registration
+
+Every plugin must be listed in `.claude-plugin/marketplace.json` to be discoverable. Without an entry there, Claude Code can't find the plugin even if the files exist on disk. When adding a new plugin, always add both the directory and the manifest entry.
+
 ## Plugin Structure
 
 Each plugin lives in `plugins/<plugin-name>/` with:
