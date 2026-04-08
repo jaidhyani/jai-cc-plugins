@@ -1,0 +1,5 @@
+{
+  "name": "dev-pipeline",
+  "description": "End-to-end autonomous development pipeline: goal → plan → TDD → implement → validate → PR → review loop → merge → close tracking",
+  "version": "1.0.0"
+}

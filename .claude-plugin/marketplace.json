@@ -71,6 +71,15 @@
       }
     },
     {
+      "name": "dev-pipeline",
+      "source": "./plugins/dev-pipeline",
+      "description": "End-to-end autonomous development pipeline: goal → plan → TDD → implement → validate → PR → review → merge.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Jai"
+      }
+    },
+    {
       "name": "devil",
       "source": "./plugins/devil",
       "description": "Find flaws in plans, designs, and code",
