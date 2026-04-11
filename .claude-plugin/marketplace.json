@@ -96,6 +96,15 @@
       "author": {
         "name": "Jai"
       }
+    },
+    {
+      "name": "claude-ai-sync",
+      "source": "./plugins/claude-ai-sync",
+      "description": "Sync claude.ai web conversations to local markdown files via CDP through any Chromium-based browser.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Jai"
+      }
     }
   ]
 }
