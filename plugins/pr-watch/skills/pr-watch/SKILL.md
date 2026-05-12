@@ -150,11 +150,26 @@ Polling is a stopgap. The long-term plan is ephemeral Cloudflare Worker webhooks
 
 ### 4. Addressing Feedback
 
-For each comment:
+#### Triage Before Acting
+
+For each concern, classify first, act second:
+
+- **Real defect / real polish** → fix, commit, push.
+- **Reviewer hypothetical** ("what if Anthropic adds a field", "what if the transform raises") → push back in one sentence. The code does what it does; a doc note explaining that adds nothing for the next reader.
+- **Bikeshed** → skip with a one-line acknowledgement.
+- **Real question / style preference** → ask the user, don't guess.
+
+**The trap is "add a doc/comment explaining current behavior" as a response to a hypothetical.** Each note is individually cheap; cumulatively they bury the design under defensive scaffolding. Module docstrings that started at 13 lines balloon to 30+ over 5–7 review rounds. Bar for adding a comment in response to review: would a fresh reader of the file (not the reviewer who's already running thought experiments) be confused without it? If no, push back.
+
+**Push back is brief.** One sentence per concern. "Skipping — `AnthropicToolUseBlock` is a closed TypedDict." "Standard Python exception propagation; pipeline already handles it." "Already addressed (commit X)." Don't argue, just classify and move on.
+
+**Watch for accretion across rounds.** Before round 3, re-read the touched files cold. Anything that would feel like noise to a fresh reader gets cut now, regardless of which round added it.
+
+#### Per Item
+
 - **CI failures**: diagnose from logs, fix, test locally, commit and push
-- **Substantive code feedback**: make the change, test, commit and push each fix separately
-- **Questions or style preferences**: ask the user — do not guess
-- **Acknowledged nitpicks**: reply on the PR thread
+- **Substantive code feedback**: each fix gets its own commit
+- **Acknowledged nitpicks**: brief PR reply, no code change
 
 After all items:
 1. Run the project's test suite
